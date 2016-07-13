@@ -1,0 +1,264 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<!--
+The simplest possible donut chart - a single ring that fills clockwise based on a percentage.
+Perfect for dashboards where many percent circles may appear in a row or column.
+
+##### Usage
+
+<px-percent-circle value="20" maximum="40"></px-percent-circle>
+
+### Styling
+The following custom property is available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--px-percent-circle-fill-color` | Fill color for the circle | `$dv-basic-blue`
+`--px-percent-circle-background-color` | Background color for the circle | `$grey2`
+
+@element px-percent-circle
+@blurb A simple donut chart that fills clockwise based on a percentage.
+@homepage index.html
+@demo demo.html
+
+-->
+<dom-module id="px-percent-circle">
+  <link rel="import" type="css" href="css/px-percent-circle.css"/>
+  <template>
+    <svg id="container">
+      <circle id="background" cx$="[[_cx]]" cy$="[[_cy]]" r$="[[_r]]" stroke-width$="[[thickness]]"></circle>
+      <path id="arc" stroke-width$="[[thickness]]" d$="[[_arcPath]]"></path>
+      <text id="text" x$="[[_cx]]" y$="[[_cy]]">
+        <tspan id="label">[[_percent]]</tspan>
+        <tspan id="percent">%</tspan>
+      </text>
+    </svg>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-percent-circle',
+
+    properties: {
+      /**
+       * Value of the circle - percent is calculated using the maximum provided.
+       * @property value
+       * @type Number
+       * @default 0
+       */
+      value: {
+        type: Number,
+        value: 0
+      },
+      /**
+       * The maximum allowed value. The filled portion is calculated based on value divided by maximum.
+       * @property maximum
+       * @type Number
+       * @default 100
+       */
+      maximum: {
+        type: Number,
+        value: 100
+      },
+      /**
+       * The thickness, in pixels, of the donut ring.
+       * @property thickness
+       * @type Number
+       * @default 30
+       */
+      thickness: {
+        type: Number,
+        value: 30
+      },
+      /**
+       * A calculation of the value / maximum - this is the value displayed in the middle of the donut.
+       * @property _percent
+       * @type Number
+       */
+      _percent: {
+        type: Number,
+        computed: '_calcPercent(value,maximum)'
+      },
+      /**
+       * Calculated string that represents the svg path of the filled portion of the donut.
+       * @property _arcPath
+       * @type String
+       */
+      _arcPath: {
+        type: String,
+        computed: '_computedArcPath(50, 50, 40, value, maximum)'
+      },
+      /**
+       * Object used for setting up the view box of the SVG element.
+       * @property _svgViewBox
+       * @type Object
+       * @default {width:300,height:300}
+       */
+      _svgViewBox: {
+        type: Object,
+        value: function () {
+          return {
+            width: 300,
+            height: 300
+          }
+        }
+      },
+      /**
+       * String value that represents the view box attribute of the SVG element.
+       * @property _viewBox
+       * @type String
+       */
+      _viewBox: {
+        type: String,
+        computed: '_computedViewBox(_svgViewBox)',
+        observer: '_setViewBoxAttribute'
+      },
+      /**
+       * Horizontal distance from the origin to center the percentage circle (50%).
+       * @property _cx
+       * @type Number
+       */
+      _cx: {
+        type: Number,
+        computed: '_computedCoordinate(_svgViewBox.width)'
+      },
+      /**
+       * Vertical distance from the origin to center the percentage circle (50%).
+       * @property _cy
+       * @type Number
+       */
+      _cy: {
+        type: Number,
+        computed: '_computedCoordinate(_svgViewBox.height)'
+      },
+      /**
+       * Calculated inner radius to "hollow out" on the donut (50%, minus the thickness).
+       * @property _r
+       * @type Number
+       */
+      _r: {
+        type: Number,
+        computed: '_computedRadius(_svgViewBox.width, thickness)'
+      },
+      /**
+       * Calculated path for the filled in portion of the donut.
+       * @property _arcPath
+       * @type String
+       */
+      _arcPath: {
+        type: String,
+        computed: '_computedArcPath(_cx, _cy, _r, value, maximum)'
+      }
+    },
+    /**
+     * Function to adjust spacing and font sizes based on the size of the view box.
+     * @method attached
+     */
+    attached: function() {
+      // TODO: this isn't working when the circle size isn't explicitly set, but the parent div's size is
+      var min = Math.min(this.getBoundingClientRect().height, this.getBoundingClientRect().width);
+      this.set('_svgViewBox', {'width':min,'height':min});
+
+      // Adjust position and font size of text based on how big the px-percent-circle is
+      this.$.text.setAttribute('font-size', min*0.3+'px');
+      this.$.text.setAttribute('dx', min*0.01)
+      this.$.text.setAttribute('dy', min*0.09)
+      this.$.percent.setAttribute('font-size', min*0.12+'px');
+      this.$.percent.setAttribute('dx', min*(-0.05));
+      this.$.percent.setAttribute('dy', min*-0.15);
+    },
+    /**
+     * Calculates the percent to display, based on the value and maximum value.
+     * @method _calcPercent
+     * @param val
+     * @param max
+     */
+    _calcPercent: function(val,max) {
+      return Math.round(val / max * 100);
+    },
+    /**
+     * Converts view box object into a string.
+     * @method _computedViewBox
+     * @param vb
+     */
+    _computedViewBox: function (vb) {
+      return ['0', '0', vb.width, vb.height].join(' ');
+    },
+    /**
+     * Sets the view box attribute on the SVG element.
+     * @method _computedViewBox
+     * @param vb
+     */
+    _setViewBoxAttribute: function (vb) {
+      // Because polymer lowercases viewBox into viewbox
+      this.$.container.setAttribute('viewBox', vb);
+    },
+    /**
+     * Finds the center of the height/width attributes.
+     * @method _computedCoordinate
+     * @param val
+     */
+    _computedCoordinate: function (val) {
+      return val / 2;
+    },
+    /**
+     * Calculates the inner radius to "hollow out" on the donut (50%, minus the thickness).
+     * @method _r
+     * @param val
+     * @param stroke
+     */
+    _computedRadius: function (val, stroke) {
+      return (val / 2) - stroke;
+    },
+    /**
+     * Calculates path for the filled in portion of the donut.
+     * @method _computedArcPath
+     * @param x
+     * @param y
+     * @param r
+     * @param val
+     * @param max
+     *
+     * Code for this attributed here:
+     * http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
+     */
+    _computedArcPath: function (x, y, r, val, max) {
+      var delta = (val / max);
+      var startAngle = 0;
+      var endAngle = 360 * delta;
+      if (endAngle >= 360) {
+        endAngle = 359.99;
+      }
+      var start = this._polarToCartesian(x, y, r, endAngle);
+      var end = this._polarToCartesian(x, y, r, startAngle);
+      var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+      var d = [
+          'M', start.x, start.y,
+          'A', r, r, 0, arcSweep, 0, end.x, end.y
+      ].join(' ');
+      return d;
+    },
+    /**
+     * Converts a polar value to Cartesian coordinates.
+     * @method _polarToCartesian
+     * @param centerX
+     * @param centerY
+     * @param radius
+     * @param angleInDegrees
+     */
+    _polarToCartesian: function(centerX, centerY, radius, angleInDegrees) {
+      var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+      return {
+        x: centerX + (radius * Math.cos(angleInRadians)),
+        y: centerY + (radius * Math.sin(angleInRadians))
+      };
+    }
+  });
+</script>
