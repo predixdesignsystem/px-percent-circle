@@ -11,7 +11,7 @@ Perfect for dashboards where many percent circles may appear in a row or column.
 
 ##### Usage
 
-<px-percent-circle value="20" maximum="40"></px-percent-circle>
+    <px-percent-circle value="20" maximum="40"></px-percent-circle>
 
 ### Styling
 The following custom property is available for styling:
@@ -31,11 +31,11 @@ Custom property | Description | Default
   <link rel="import" type="css" href="css/px-percent-circle.css"/>
   <template>
     <svg id="container">
-      <circle id="background" cx$="[[_cx]]" cy$="[[_cy]]" r$="[[_r]]" stroke-width$="[[thickness]]"></circle>
-      <path id="arc" stroke-width$="[[thickness]]" d$="[[_arcPath]]"></path>
-      <text id="text" x$="[[_cx]]" y$="[[_cy]]">
+      <circle id="background" cx$="[[_cx]]" cy$="[[_cy]]" r$="[[_r]]" stroke-width$="[[_thickness]]"></circle>
+      <path id="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>
+      <text id="text" x$="[[_cx]]" y$="[[_cy]]" font-size$="[[_placement.tf]]" dx$="[[_placement.tx]]" dy$="[[_placement.ty]]">
         <tspan id="label">[[_percent]]</tspan>
-        <tspan id="percent">%</tspan>
+        <tspan id="percent" font-size$="[[_placement.pf]]" dx$="[[_placement.px]]" dy$="[[_placement.py]]">%</tspan>
       </text>
     </svg>
   </template>
@@ -52,23 +52,27 @@ Custom property | Description | Default
        * @property value
        * @type Number
        * @default 0
+       * @reflect true
        */
       value: {
         type: Number,
-        value: 0
+        value: 0,
+        reflect: true
       },
       /**
        * The maximum allowed value. The filled portion is calculated based on value divided by maximum.
        * @property maximum
        * @type Number
        * @default 100
+       * @reflect true
        */
       maximum: {
         type: Number,
-        value: 100
+        value: 100,
+        reflect: true
       },
       /**
-       * The thickness, in pixels, of the donut ring.
+       * The thickness, in pixels, of the donut ring. Will not go beyond 10% of the component's size to avoid display issues.
        * @property thickness
        * @type Number
        * @default 30
@@ -78,47 +82,61 @@ Custom property | Description | Default
         value: 30
       },
       /**
+       * The sanitized value - invalid or negative values converted to 0.
+       * @property value
+       * @type Number
+       */
+      _value: {
+        type: Number,
+        computed: '_computedValue(value)'
+      },
+      /**
+       * The sanitized maximum - invalid or negative values converted to be defualt of 100.
+       * @property maximum
+       * @type Number
+       */
+      _maximum: {
+        type: Number,
+        computed: '_computedMaximum(maximum)'
+      },
+      /**
+       * The calculated size of the percent circle component based on bounding rectangle.
+       * @property _size
+       * @type Number
+       */
+      _size: {
+        type: Number,
+        computed: '_computedSize()',
+        observer: '_setViewBoxAttribute',
+        value: 300
+      },
+      /**
+       * The calculated thickness of the donut ring as a function of the component's size.
+       * @property _thickness
+       * @type Number
+       * @default 30
+       */
+      _thickness: {
+        type: Number,
+        computed: '_computedThickness(_size,thickness)'
+      },
+      /**
        * A calculation of the value / maximum - this is the value displayed in the middle of the donut.
        * @property _percent
        * @type Number
        */
       _percent: {
         type: Number,
-        computed: '_calcPercent(value,maximum)'
+        computed: '_computedPercent(_value,_maximum)'
       },
       /**
-       * Calculated string that represents the svg path of the filled portion of the donut.
-       * @property _arcPath
-       * @type String
-       */
-      _arcPath: {
-        type: String,
-        computed: '_computedArcPath(50, 50, 40, value, maximum)'
-      },
-      /**
-       * Object used for setting up the view box of the SVG element.
-       * @property _svgViewBox
+       * Calculated array that represents the placement of the text labels inside the donut.
+       * @property _placement
        * @type Object
-       * @default {width:300,height:300}
        */
-      _svgViewBox: {
+      _placement: {
         type: Object,
-        value: function () {
-          return {
-            width: 300,
-            height: 300
-          }
-        }
-      },
-      /**
-       * String value that represents the view box attribute of the SVG element.
-       * @property _viewBox
-       * @type String
-       */
-      _viewBox: {
-        type: String,
-        computed: '_computedViewBox(_svgViewBox)',
-        observer: '_setViewBoxAttribute'
+        computed: '_computedPlacement(_size)'
       },
       /**
        * Horizontal distance from the origin to center the percentage circle (50%).
@@ -127,7 +145,7 @@ Custom property | Description | Default
        */
       _cx: {
         type: Number,
-        computed: '_computedCoordinate(_svgViewBox.width)'
+        computed: '_computedCoordinate(_size)'
       },
       /**
        * Vertical distance from the origin to center the percentage circle (50%).
@@ -136,7 +154,7 @@ Custom property | Description | Default
        */
       _cy: {
         type: Number,
-        computed: '_computedCoordinate(_svgViewBox.height)'
+        computed: '_computedCoordinate(_size)'
       },
       /**
        * Calculated inner radius to "hollow out" on the donut (50%, minus the thickness).
@@ -145,7 +163,7 @@ Custom property | Description | Default
        */
       _r: {
         type: Number,
-        computed: '_computedRadius(_svgViewBox.width, thickness)'
+        computed: '_computedRadius(_size, _thickness)'
       },
       /**
        * Calculated path for the filled in portion of the donut.
@@ -154,51 +172,75 @@ Custom property | Description | Default
        */
       _arcPath: {
         type: String,
-        computed: '_computedArcPath(_cx, _cy, _r, value, maximum)'
+        computed: '_computedArcPath(_cx, _cy, _r, _percent)'
       }
     },
     /**
-     * Function to adjust spacing and font sizes based on the size of the view box.
-     * @method attached
+     * Calculated spacing and font sizes based on the size of the component
+     * @method _computedPlacement
+     * @param size
      */
-    attached: function() {
-      // TODO: this isn't working when the circle size isn't explicitly set, but the parent div's size is
-      var min = Math.min(this.getBoundingClientRect().height, this.getBoundingClientRect().width);
-      this.set('_svgViewBox', {'width':min,'height':min});
-
-      // Adjust position and font size of text based on how big the px-percent-circle is
-      this.$.text.setAttribute('font-size', min*0.3+'px');
-      this.$.text.setAttribute('dx', min*0.01)
-      this.$.text.setAttribute('dy', min*0.09)
-      this.$.percent.setAttribute('font-size', min*0.12+'px');
-      this.$.percent.setAttribute('dx', min*(-0.05));
-      this.$.percent.setAttribute('dy', min*-0.15);
+    _computedPlacement: function(size) {
+      return {
+        "tf": size*0.3+'px',
+        "tx": size*0.01,
+        "ty": size*0.09,
+        "pf": size*0.2+'px',
+        "px": size*(-0.05),
+        "py": size*0}
     },
     /**
-     * Calculates the percent to display, based on the value and maximum value.
-     * @method _calcPercent
+     * Cleanses invalid inputs by clipping value between 0 and 100.
+     * @method _computedValue
+     * @param val
+     */
+    _computedValue: function(val) {
+      val = parseInt(val);
+      if((!val || val < 0) && val !== 0) {
+        console.log('Px Percent Circle: invalid value converted to 0%');
+        // this.value = 0;
+        return 0;
+      }
+      return val;
+    },
+    /**
+     * Cleanses invalid values for the maximum
+     * @method _computedMaximum
+     * @param max
+     */
+    _computedMaximum: function(max) {
+      max = parseInt(max);
+      if (!max || max <= 0) {
+        console.log('Px Percent Circle: invalid max, assumed to be 100');
+        // this.maximum = 100;
+        return 100;
+      }
+      return max;
+    },
+    /**
+     * Calculates the percent to display, based on the sanitized value and maximum value.
+     * @method _computedPercent
      * @param val
      * @param max
      */
-    _calcPercent: function(val,max) {
-      return Math.round(val / max * 100);
-    },
-    /**
-     * Converts view box object into a string.
-     * @method _computedViewBox
-     * @param vb
-     */
-    _computedViewBox: function (vb) {
-      return ['0', '0', vb.width, vb.height].join(' ');
+    _computedPercent: function(val,max) {
+      if (val > max) {
+        console.log('Px Percent Circle: invalid value converted to 100%');
+        // this.maximum = 100;
+        this._maximum = 100;
+        // this.value = 100;
+        this._value = 100;
+        return 100;
+      }
+      return Math.round((val / max) * 100);
     },
     /**
      * Sets the view box attribute on the SVG element.
-     * @method _computedViewBox
-     * @param vb
+     * @method _setViewBoxAttribute
+     * @param size
      */
-    _setViewBoxAttribute: function (vb) {
-      // Because polymer lowercases viewBox into viewbox
-      this.$.container.setAttribute('viewBox', vb);
+    _setViewBoxAttribute: function (size) {
+      this.$.container.setAttribute('viewBox', ['0', '0', size, size].join(' '));
     },
     /**
      * Finds the center of the height/width attributes.
@@ -210,12 +252,35 @@ Custom property | Description | Default
     },
     /**
      * Calculates the inner radius to "hollow out" on the donut (50%, minus the thickness).
-     * @method _r
+     * @method _computedRadius
      * @param val
      * @param stroke
      */
     _computedRadius: function (val, stroke) {
       return (val / 2) - stroke;
+    },
+    /**
+     * Sanitizes the size property so that it's never smaller than 100
+     * @method _computedSize
+     * @param size
+     */
+    _computedSize: function () {
+        return Math.min(this.getBoundingClientRect().height, this.getBoundingClientRect().width);
+    },
+    /**
+     * Sanitizes the thickness property so that it's never too large or too small
+     * @method _computedThickness
+     * @param size
+     * @param thickness
+     */
+    _computedThickness: function (size, thickness) {
+      thickness = parseInt(thickness);
+      if(!thickness || thickness <= 1 || thickness / size >= .1) {
+        return size * .1;
+      }
+      else {
+        return thickness;
+      }
     },
     /**
      * Calculates path for the filled in portion of the donut.
@@ -229,8 +294,8 @@ Custom property | Description | Default
      * Code for this attributed here:
      * http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
      */
-    _computedArcPath: function (x, y, r, val, max) {
-      var delta = (val / max);
+    _computedArcPath: function (x, y, r, percent) {
+      var delta = (percent / 100);
       var startAngle = 0;
       var endAngle = 360 * delta;
       if (endAngle >= 360) {

@@ -24,7 +24,8 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'css/noprefix/px-percent-circle-sketch.css': 'sass/px-percent-circle-sketch.scss',
-          'css/noprefix/px-percent-circle.css': 'sass/px-percent-circle-predix.scss'
+          'css/noprefix/px-percent-circle.css': 'sass/px-percent-circle-predix.scss',
+          'css/noprefix/px-percent-circle-demo.css': 'sass/px-percent-circle-demo.scss'
         }
       }
     },

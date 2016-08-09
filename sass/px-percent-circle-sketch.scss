@@ -39,6 +39,8 @@ Predix branding rules go in px-percent-circle-predix.scss, not in this file.
 @import "_variables.scss";
 :host {
   display: block;
+  height: auto;
+  width: auto;
 }
 svg circle#background {
   fill: transparent;
@@ -51,9 +53,6 @@ svg path#arc {
 svg text#text {
   text-align: center;
   text-anchor: middle;
-}
-svg tspan#percent {
-  fill: $grey4;
 }
 
 // Trumps

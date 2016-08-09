@@ -561,7 +561,9 @@ a {
   min-height: 100vh; }
 
 :host {
-  display: block; }
+  display: block;
+  height: auto;
+  width: auto; }
 
 svg circle#background {
   fill: transparent;
@@ -574,9 +576,6 @@ svg path#arc {
 svg text#text {
   text-align: center;
   text-anchor: middle; }
-
-svg tspan#percent {
-  fill: #d1d0d8; }
 
 /*------------------------------------*    #CLEARFIX
 \*------------------------------------*/
