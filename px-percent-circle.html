@@ -11,7 +11,7 @@ Perfect for dashboards where many percent circles may appear in a row or column.
 
 ##### Usage
 
-    <px-percent-circle value="20" maximum="40"></px-percent-circle>
+    <px-percent-circle value="20" maximum="40" thickness="10"></px-percent-circle>
 
 ### Styling
 The following custom property is available for styling:
@@ -48,28 +48,24 @@ Custom property | Description | Default
 
     properties: {
       /**
-       * Value of the circle - percent is calculated using the maximum provided.
+       * Value of the circle - percent is calculated using the maximum provided. Negative values result in 0% while values above maximum result in 100%.
        * @property value
        * @type Number
        * @default 0
-       * @reflect true
        */
       value: {
         type: Number,
-        value: 0,
-        reflect: true
+        value: 0
       },
       /**
-       * The maximum allowed value. The filled portion is calculated based on value divided by maximum.
+       * The maximum allowed value. The filled portion is calculated based on value divided by maximum. If an invalid maximum is provided, defaults to 100.
        * @property maximum
        * @type Number
        * @default 100
-       * @reflect true
        */
       maximum: {
         type: Number,
-        value: 100,
-        reflect: true
+        value: 100
       },
       /**
        * The thickness, in pixels, of the donut ring. Will not go beyond 10% of the component's size to avoid display issues.
@@ -187,7 +183,7 @@ Custom property | Description | Default
         "ty": size*0.09,
         "pf": size*0.2+'px',
         "px": size*(-0.05),
-        "py": size*0}
+        "py": 0}
     },
     /**
      * Cleanses invalid inputs by clipping value between 0 and 100.
@@ -265,7 +261,8 @@ Custom property | Description | Default
      * @param size
      */
     _computedSize: function () {
-        return Math.min(this.getBoundingClientRect().height, this.getBoundingClientRect().width);
+      var rect = this.getBoundingClientRect();
+      return Math.min(rect.height, rect.width);
     },
     /**
      * Sanitizes the thickness property so that it's never too large or too small
@@ -275,12 +272,7 @@ Custom property | Description | Default
      */
     _computedThickness: function (size, thickness) {
       thickness = parseInt(thickness);
-      if(!thickness || thickness <= 1 || thickness / size >= .1) {
-        return size * .1;
-      }
-      else {
-        return thickness;
-      }
+      return (!thickness || thickness <= 1 || thickness / size >= .1) ?  size * .1 : thickness;
     },
     /**
      * Calculates path for the filled in portion of the donut.
@@ -295,19 +287,17 @@ Custom property | Description | Default
      * http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
      */
     _computedArcPath: function (x, y, r, percent) {
-      var delta = (percent / 100);
-      var startAngle = 0;
-      var endAngle = 360 * delta;
-      if (endAngle >= 360) {
-        endAngle = 359.99;
-      }
-      var start = this._polarToCartesian(x, y, r, endAngle);
-      var end = this._polarToCartesian(x, y, r, startAngle);
-      var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
-      var d = [
-          'M', start.x, start.y,
-          'A', r, r, 0, arcSweep, 0, end.x, end.y
-      ].join(' ');
+      var delta = (percent / 100),
+          startAngle = 0,
+          endAngle = 360 * delta;
+      endAngle = endAngle >= 360 ? 359.99 : endAngle;
+      var start = this._polarToCartesian(x, y, r, endAngle),
+          end = this._polarToCartesian(x, y, r, startAngle),
+          arcSweep = endAngle - startAngle <= 180 ? "0" : "1",
+          d = [
+              'M', start.x, start.y,
+              'A', r, r, 0, arcSweep, 0, end.x, end.y
+          ].join(' ');
       return d;
     },
     /**

@@ -1,8 +1,9 @@
-#Px-Percent-Circle
+# px-percent-circle [![Build Status](https://travis-ci.org/PredixDev/px-percent-circle.svg?branch=master)](https://travis-ci.org/PredixDev/px-percent-circle)
+[![px-percent-circle demo](px-percent-circle.png?raw=true)](https://PredixDev.github.io/px-percent-circle/)
 
 ## Overview
 
-Px-Percent-Circle is a Predix UI component that provides a very simple donut chart style visualization. Given a value and a maximum value, the donut fills from the vertical position clockwise around the donut.
+px-percent-circle is a Predix UI component that provides a very simple donut chart style visualization. Given a value and a maximum value, the donut fills from the vertical position clockwise around the donut.
 
 ## Usage
 
@@ -39,7 +40,7 @@ Finally, use the component in your application:
 
 ## Documentation
 
-Read the full API and view the demo [here](https://randyaskin.github.io/px-percent-circle/px-percent-circle/).
+Read the full API and view the demo [here](https://PredixDev.github.io/px-percent-circle/px-percent-circle/).
 
 The documentation in this repository is supplemental to the official Predix documentation, which is continuously updated and maintained by the Predix documentation team. Go to [http://predix.io](http://predix.io)  to see the official Predix documentation.
 

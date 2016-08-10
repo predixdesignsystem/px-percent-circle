@@ -1,14 +1,14 @@
 {
     "name": "px-percent-circle",
     "author": "General Electric",
-    "description": "A Px component",
+    "description": "A simple donut chart that fills clockwise based on a percentage.",
     "version": "0.0.2",
     "private": true,
     "extName" : null,
     "repository" :
     {
         "type": "git",
-        "url": "https://github.com/PredixDev/change-this-in-package.json-please.git"
+        "url": "https://github.com/PredixDev/px-percent-circle.git"
     },
     "homepage": "http://predix.io/",
     "devDependencies": {
