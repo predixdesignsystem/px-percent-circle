@@ -7,7 +7,7 @@ function runCustomTests() {
   suite('Custom Automation Tests for a default px-percent-circle', function() {
     test('Check default value of first px-percent-circle', function(done){
       var percentEl = Polymer.dom(document).querySelector('#px-percent-circle-1'),
-          percentValue = percentEl.value,
+          percentValue = percentEl.val,
           percentLabel = percentEl.querySelector('#label').innerHTML;
       assert.equal(percentValue, '0');
       assert.equal(percentLabel, '0');
@@ -15,7 +15,7 @@ function runCustomTests() {
     });
     test('Check calculated value of second px-percent-circle', function(done){
       var percentEl = Polymer.dom(document).querySelector('#px-percent-circle-2'),
-          percentValue = percentEl.value,
+          percentValue = percentEl.val,
           percentLabel = percentEl.querySelector('#label').innerHTML;
       assert.equal(percentValue, '10');
       assert.equal(percentLabel, '20');  // 10 / 50 = 20%
@@ -23,7 +23,7 @@ function runCustomTests() {
     });
     test('Check negative value of third px-percent-circle', function(done){
       var percentEl = Polymer.dom(document).querySelector('#px-percent-circle-3'),
-          percentValue = percentEl.value,
+          percentValue = percentEl.val,
           percentLabel = percentEl.querySelector('#label').innerHTML;
       assert.equal(percentValue, '-10');
       assert.equal(percentLabel, '0');
@@ -31,7 +31,7 @@ function runCustomTests() {
     });
     test('Check default value of fourth px-percent-circle', function(done){
       var percentEl = Polymer.dom(document).querySelector('#px-percent-circle-4'),
-          percentValue = percentEl.value,
+          percentValue = percentEl.val,
           percentLabel = percentEl.querySelector('#label').innerHTML;
       assert.equal(percentValue, '100');
       assert.equal(percentLabel, '100');
@@ -39,7 +39,7 @@ function runCustomTests() {
     });
     test('Check default value of fourth px-percent-circle', function(done){
       var percentEl = Polymer.dom(document).querySelector('#px-percent-circle-5'),
-          percentValue = percentEl.value,
+          percentValue = percentEl.val,
           percentLabel = percentEl.querySelector('#label').innerHTML;
       assert.equal(percentValue, '20');
       assert.equal(percentLabel, '100');

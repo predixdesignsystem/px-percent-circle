@@ -49,11 +49,11 @@ Custom property | Description | Default
     properties: {
       /**
        * Value of the circle - percent is calculated using the maximum provided. Negative values result in 0% while values above maximum result in 100%.
-       * @property value
+       * @property val
        * @type Number
        * @default 0
        */
-      value: {
+      val: {
         type: Number,
         value: 0
       },
@@ -63,7 +63,7 @@ Custom property | Description | Default
        * @type Number
        * @default 100
        */
-      maximum: {
+      max: {
         type: Number,
         value: 100
       },
@@ -82,18 +82,18 @@ Custom property | Description | Default
        * @property value
        * @type Number
        */
-      _value: {
+      _val: {
         type: Number,
-        computed: '_computedValue(value)'
+        computed: '_computedVal(val)'
       },
       /**
        * The sanitized maximum - invalid or negative values converted to be defualt of 100.
        * @property maximum
        * @type Number
        */
-      _maximum: {
+      _max: {
         type: Number,
-        computed: '_computedMaximum(maximum)'
+        computed: '_computedMax(max)'
       },
       /**
        * The calculated size of the percent circle component based on bounding rectangle.
@@ -123,7 +123,7 @@ Custom property | Description | Default
        */
       _percent: {
         type: Number,
-        computed: '_computedPercent(_value,_maximum)'
+        computed: '_computedPercent(_val,_max)'
       },
       /**
        * Calculated array that represents the placement of the text labels inside the donut.
@@ -187,10 +187,10 @@ Custom property | Description | Default
     },
     /**
      * Cleanses invalid inputs by clipping value between 0 and 100.
-     * @method _computedValue
+     * @method _computedVal
      * @param val
      */
-    _computedValue: function(val) {
+    _computedVal: function(val) {
       val = parseInt(val);
       if((!val || val < 0) && val !== 0) {
         console.log('Px Percent Circle: invalid value converted to 0%');
@@ -201,14 +201,13 @@ Custom property | Description | Default
     },
     /**
      * Cleanses invalid values for the maximum
-     * @method _computedMaximum
+     * @method _computedMax
      * @param max
      */
-    _computedMaximum: function(max) {
+    _computedMax: function(max) {
       max = parseInt(max);
       if (!max || max <= 0) {
         console.log('Px Percent Circle: invalid max, assumed to be 100');
-        // this.maximum = 100;
         return 100;
       }
       return max;
@@ -222,10 +221,8 @@ Custom property | Description | Default
     _computedPercent: function(val,max) {
       if (val > max) {
         console.log('Px Percent Circle: invalid value converted to 100%');
-        // this.maximum = 100;
         this._maximum = 100;
-        // this.value = 100;
-        this._value = 100;
+        this._val = 100;
         return 100;
       }
       return Math.round((val / max) * 100);

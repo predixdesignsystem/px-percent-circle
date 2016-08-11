@@ -54,15 +54,15 @@
           </template>
         </px-tab-set>
       </div>
-      <px-tab-pages selected="{{selected}}"> 
+      <px-tab-pages selected="{{selected}}">
         <template is="dom-repeat" items="{{optionsArray}}">
           <section class="tab-page flex flex--right flex--wrap">
             <div class="mega-demo flex u-pb++">
             <!-- Properties -->
             <div class="properties u-ph+ u-pb+ u-mt++ u-mh++">
               <p class="epsilon">Properties</p>
-              <div class="u-mb-">Value: <input class="text-input" type="number" placeholder="{{item.value}}" value="{{item.value::input}}" /></div>
-              <div class="u-mb-">Maximum: <input class="text-input" type="number" placeholder="{{item.maximum}}" value="{{item.maximum::input}}" /></div>
+              <div class="u-mb-">Value: <input class="text-input" type="number" placeholder="{{item.val}}" value="{{item.val::input}}" /></div>
+              <div class="u-mb-">Maximum: <input class="text-input" type="number" placeholder="{{item.max}}" value="{{item.max::input}}" /></div>
               <div class="u-mb-">Thickness: <input class="text-input" type="number" placeholder="{{item.thickness}}" value="{{item.thickness::input}}" /></div>
             </div>
 
@@ -73,8 +73,8 @@
                   <div style="max-width:400px;max-height:400px;">
                     <px-percent-circle
                     id="percentEl{{indexPlusOne(index)}}"
-                    value="{{item.value}}"
-                    maximum="{{item.maximum}}"
+                    val="{{item.val}}"
+                    max="{{item.max}}"
                     thickness="{{item.thickness}}">
                     </px-percent-circle>
                   </div>
@@ -125,13 +125,13 @@ window.addEventListener('WebComponentsReady', function() {
   var template = document.querySelector('template[is=dom-bind]'),
   optionsArray = [
     {
-      "value": 33,
-      "maximum": 100,
+      "val": 33,
+      "max": 100,
       "thickness": 30
     },
     {
-      "value": 5,
-      "maximum": 80,
+      "val": 5,
+      "max": 80,
       "thickness": 10
     }
   ];
