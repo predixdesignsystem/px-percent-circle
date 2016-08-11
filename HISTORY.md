@@ -1,4 +1,8 @@
-v0.0.2
+v0.0.4
+==================
+* Travis config update
+
+v0.0.3
 ==================
 * Fix for IE11 compatibility
 
