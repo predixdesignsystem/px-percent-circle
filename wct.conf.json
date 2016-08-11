@@ -37,6 +37,6 @@
     }
   },
   "suites": [
-    "test/fixture.html"
+    "test/px-percent-circle-test-fixture.html"
   ]
 }
