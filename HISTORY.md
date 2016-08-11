@@ -1,3 +1,11 @@
+v0.0.6
+==================
+* Remove private tag from package.json
+
+v0.0.5
+==================
+* Updated test cases
+
 v0.0.4
 ==================
 * Travis config update
