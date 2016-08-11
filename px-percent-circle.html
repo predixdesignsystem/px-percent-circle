@@ -208,7 +208,6 @@ Custom property | Description | Default
       max = parseInt(max);
       if (!max || max <= 0) {
         console.log('Px Percent Circle: invalid max, assumed to be 100');
-        // this.maximum = 100;
         return 100;
       }
       return max;
@@ -222,9 +221,7 @@ Custom property | Description | Default
     _computedPercent: function(val,max) {
       if (val > max) {
         console.log('Px Percent Circle: invalid value converted to 100%');
-        // this.maximum = 100;
         this._maximum = 100;
-        // this.value = 100;
         this._value = 100;
         return 100;
       }
