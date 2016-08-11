@@ -194,7 +194,6 @@ Custom property | Description | Default
       val = parseInt(val);
       if((!val || val < 0) && val !== 0) {
         console.log('Px Percent Circle: invalid value converted to 0%');
-        // this.value = 0;
         return 0;
       }
       return val;
@@ -221,7 +220,7 @@ Custom property | Description | Default
     _computedPercent: function(val,max) {
       if (val > max) {
         console.log('Px Percent Circle: invalid value converted to 100%');
-        this._maximum = 100;
+        this._max = 100;
         this._val = 100;
         return 100;
       }
@@ -269,7 +268,7 @@ Custom property | Description | Default
      */
     _computedThickness: function (size, thickness) {
       thickness = parseInt(thickness);
-      return (!thickness || thickness <= 1 || thickness / size >= .1) ?  size * .1 : thickness;
+      return (!thickness || thickness < 1 || thickness / size >= .1) ?  size * .1 : thickness;
     },
     /**
      * Calculates path for the filled in portion of the donut.
