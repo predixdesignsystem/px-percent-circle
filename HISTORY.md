@@ -1,3 +1,7 @@
+v0.0.7
+==================
+* Fix for Safari viewBox compatibility
+
 v0.0.6
 ==================
 * Remove private tag from package.json

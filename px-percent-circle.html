@@ -30,7 +30,7 @@ Custom property | Description | Default
 <dom-module id="px-percent-circle">
   <link rel="import" type="css" href="css/px-percent-circle.css"/>
   <template>
-    <svg id="container">
+    <svg id="container" height="100%" width="100%">
       <circle id="background" cx$="[[_cx]]" cy$="[[_cy]]" r$="[[_r]]" stroke-width$="[[_thickness]]"></circle>
       <path id="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>
       <text id="text" x$="[[_cx]]" y$="[[_cy]]" font-size$="[[_placement.tf]]" dx$="[[_placement.tx]]" dy$="[[_placement.ty]]">
