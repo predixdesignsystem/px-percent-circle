@@ -1,3 +1,7 @@
+v0.0.8
+==================
+* updated mega demo styles, bower px-demo-snippet to ^ and removed flex__wrap from mega-demo
+
 v0.0.7
 ==================
 * Fix for Safari viewBox compatibility

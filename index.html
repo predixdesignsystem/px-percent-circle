@@ -34,16 +34,17 @@
     <div class="hero u-p++ text--shadow">
       <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-percent-circle" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
   		<h1 class="delta">px-percent-circle</h1>
-  		<p>
-        The px-percent-circle is the simplest possible donut chart - a single ring that fills clockwise based on a percentage. Perfect for dashboards where many percent circles may appear in a row or column.
-      </p>
+      <div class="description-text">
+    		<p>
+          The px-percent-circle is the simplest possible donut chart - a single ring that fills clockwise based on a percentage. Perfect for dashboards where many percent circles may appear in a row or column.
+        </p>
+      </div>
   		<div class="flex">
   			<img class="u-mr--" src="https://img.shields.io/travis/PredixDev/px-percent-circle.svg?style=flat-square" alt="Travis" onerror="this.style.display='none'"/>
   			<img class="u-mr--" src="https://img.shields.io/bower/v/px-percent-circle.svg?style=flat-square" alt="Bower" onerror="this.style.display='none'"/>
   			<img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-percent-circle.svg?style=flat-square" alt="Issues" onerror="this.style.display='none'"/>
   		</div>
   	</div>
-    <br />
 
     <!-- mega demo -->
     <div style="position: relative;" class="u-pb++ flex flex--col" id="defaultTab">
@@ -56,70 +57,72 @@
       </div>
       <px-tab-pages selected="{{selected}}">
         <template is="dom-repeat" items="{{optionsArray}}">
-          <section class="tab-page flex flex--right flex--wrap">
-            <div class="mega-demo flex u-pb++">
-            <!-- Properties -->
-            <div class="properties u-ph+ u-pb+ u-mt++ u-mh++">
-              <p class="epsilon">Properties</p>
-              <div class="u-mb-">Value: <input class="text-input" type="number" placeholder="{{item.val}}" value="{{item.val::input}}" /></div>
-              <div class="u-mb-">Maximum: <input class="text-input" type="number" placeholder="{{item.max}}" value="{{item.max::input}}" /></div>
-              <div class="u-mb-">Thickness: <input class="text-input" type="number" placeholder="{{item.thickness}}" value="{{item.thickness::input}}" /></div>
-            </div>
+          <section class="tab-page">
+            <div class="mega-demo flex u-ph++ u-pb++">
+              <!-- Properties -->
+              <div class="properties u-ph+ u-pb+ u-mt+">
+                <p class="epsilon">Properties</p>
+                <div class="u-mb-">Value: <input class="text-input" type="number" placeholder="{{item.val}}" value="{{item.val::input}}" /></div>
+                <div class="u-mb-">Maximum: <input class="text-input" type="number" placeholder="{{item.max}}" value="{{item.max::input}}" /></div>
+                <div class="u-mb-">Thickness: <input class="text-input" type="number" placeholder="{{item.thickness}}" value="{{item.thickness::input}}" /></div>
+              </div>
 
-            <div class="demoContainer u-mr++">
-              <!-- demo -->
-              <div class="flex flex--col">
-                <div class="flex__item demo u-ph+ u-pb+ u-mt++">
-                  <div style="max-width:400px;max-height:400px;">
-                    <px-percent-circle
-                    id="percentEl{{indexPlusOne(index)}}"
-                    val="{{item.val}}"
-                    max="{{item.max}}"
-                    thickness="{{item.thickness}}">
-                    </px-percent-circle>
+              <div class="demoContainer clearfix u-mt+">
+                <!-- demo -->
+                <div class="flex flex--col">
+                  <div class="demo u-p+">
+
+                    <div style="max-width:300px;max-height:300px;">
+                      <px-percent-circle
+                        id="percentEl{{indexPlusOne(index)}}"
+                        val="{{item.val}}"
+                        max="{{item.max}}"
+                        thickness="{{item.thickness}}">
+                      </px-percent-circle>
+                    </div>
+
+                  </div>
+                  <div>
+                    <px-demo-snippet
+                      element-properties={{item}}
+                      element-name="px-percent-circle">
+                    </px-demo-snippet>
                   </div>
                 </div>
-                <div class="flex__item">
-                  <px-demo-snippet
-                    element-properties={{item}}
-                    element-name="px-percent-circle">
-                  </px-demo-snippet>
+              </div>
+            </div>
+            <div class="apiContainer">
+              <div class="flex flex--col api u-mt++" >
+                <div>
+                  <px-api-viewer source="px-percent-circle"></px-api-viewer>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="apiContainer">
-            <div class="flex flex--col api u-mt++" >
-              <div>
-                <px-api-viewer source="px-percent-circle"></px-api-viewer>
-              </div>
-            </div>
-          </div>
-        </section>
-      </template>
-    </px-tab-pages>
-  </div>
-  <footer class="footer flex flex--center">
-    <div class="footer__container u-pv++">
-      <div>
-        <a href="https://ge.com/digital" >
-          <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
-        </a>
-      </div>
-      <div class="footer__list">
-        <ul class="list-inline list-inline--delimited">
-          <li>
-            <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
-          </li>
-          <li>
-            <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
-          </li>
-          <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
-        </ul>
-      </div>
+          </section>
+        </template>
+      </px-tab-pages>
     </div>
-  </footer>
-</template>
+    <footer class="footer flex flex--center">
+      <div class="footer__container u-pv++">
+        <div>
+          <a href="https://ge.com/digital" >
+            <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
+          </a>
+        </div>
+        <div class="footer__list">
+          <ul class="list-inline list-inline--delimited">
+            <li>
+              <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+            </li>
+            <li>
+              <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+            </li>
+            <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </template>
 <script>
 window.addEventListener('WebComponentsReady', function() {
   var template = document.querySelector('template[is=dom-bind]'),
