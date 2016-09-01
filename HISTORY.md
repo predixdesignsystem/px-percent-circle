@@ -1,3 +1,7 @@
+v0.0.9
+==================
+* fixed demo page for IE
+
 v0.0.8
 ==================
 * updated mega demo styles, bower px-demo-snippet to ^ and removed flex__wrap from mega-demo
