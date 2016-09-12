@@ -34,6 +34,15 @@
         width: 400px;
         height: 300px;
       }
+
+      .custom {
+        width: 200px;
+        height: 200px;
+      }
+
+      .text-center {
+        text-align: center;
+      }
     </style>
   </head>
 
@@ -46,10 +55,17 @@
     </div>
     <br />
     Size set explicitly on the component:
-    <px-percent-circle class="medium" value="1" maximum="3" thickness="15"></px-percent-circle>
+      <px-percent-circle class="medium" val="1" maximum="3" thickness="15"></px-percent-circle>
     <br />
     Text scales with component:
-    <px-percent-circle class="large" value="80" maximum="100" thickness="20"></px-percent-circle>
+      <px-percent-circle class="large" val="80" maximum="100" thickness="20"></px-percent-circle>
+    <br/>
+    Display custom content in circle center:
+    <div class="custom">
+      <px-percent-circle class="custom" values="[400, 200, 150]" max="500" thickness="20">
+        <p class="text-center"><strong>Custom contents</strong></p>
+      </px-percent-circle>
+    </div>
     <br />
     Default fill color ($dv-basic-blue) and thickness (30px):
     <div class="widget">

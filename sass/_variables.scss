@@ -1,3 +1,11 @@
 $px-percent-circle-fill-color       :   var(--px-percent-circle-fill-color, $dv-basic-blue);
+$px-percent-circle-fill-color-list: (
+  var(--px-percent-circle-fill-color-1, $dv-basic-blue),
+  var(--px-percent-circle-fill-color-2, $dv-basic-orange),
+  var(--px-percent-circle-fill-color-3, $dv-basic-yellow),
+  var(--px-percent-circle-fill-color-4, $dv-basic-pink),
+  var(--px-percent-circle-fill-color-5, $dv-basic-brown)
+);
 $px-percent-circle-background-color :   var(--px-percent-circle-background-color, $grey2);
 $px-percent-circle-text-color       :   var(--px-percent-circle-text-color, black);
+$px-percent-circle-center-color    : var(--px-percent-circle-center-color, transparent);
