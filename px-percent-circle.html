@@ -27,9 +27,13 @@ Custom property | Description | Default
 @demo demo.html
 
 -->
+
+<link rel="import" href="css/px-percent-circle-styles.html">
+
 <dom-module id="px-percent-circle">
-  <link rel="import" type="css" href="css/px-percent-circle.css"/>
   <template>
+    <style include="px-percent-circle-styles"></style>
+    <style include="px-theme-styles"></style>
     <svg id="container" height="100%" width="100%">
       <circle id="background" cx$="[[_cx]]" cy$="[[_cy]]" r$="[[_r]]" stroke-width$="[[_thickness]]"></circle>
       <path id="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>
