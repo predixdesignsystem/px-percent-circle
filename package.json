@@ -2,7 +2,7 @@
   "name": "px-percent-circle",
   "author": "General Electric",
   "description": "A simple donut chart that fills clockwise based on a percentage.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "extName": null,
   "repository": {
     "type": "git",

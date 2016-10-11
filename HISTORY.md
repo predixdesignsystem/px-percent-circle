@@ -1,3 +1,11 @@
+v0.1.1
+==================
+* Latest demo snippet component and latest gulpfile.
+
+v0.1.0
+==================
+* Grunt to gulp migration and style modules.
+
 v0.0.9
 ==================
 * fixed demo page for IE
