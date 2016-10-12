@@ -53,6 +53,7 @@ svg path#arc {
 svg text#text {
   text-align: center;
   text-anchor: middle;
+  fill: $px-percent-circle-text-color;
 }
 
 // Trumps
