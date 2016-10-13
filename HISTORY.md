@@ -1,3 +1,7 @@
+v0.1.2
+==================
+* merge pull request #1
+
 v0.1.1
 ==================
 * Latest demo snippet component and latest gulpfile.
