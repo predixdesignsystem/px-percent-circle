@@ -82,15 +82,27 @@ Custom property | Description | Default
         type: Number,
         value: 30
       },
+
       /**
-       * The unit of value default is percentage.
-       * @property thickness
+       * The unit of value default is '%'.
+       * @property unit
        * @type String
-       * @default '%''
+       * @default '%'
        */
       unit: {
         type: String,
         value: '%'
+      },
+
+      /**
+       * Enable to show value number instead of percentage.
+       * @property showValue
+       * @type Boolean
+       * @default false
+       */
+      showValue: {
+        type: Boolean,
+        value: false
       },
 
       /**
@@ -234,6 +246,7 @@ Custom property | Description | Default
      * @param max
      */
     _computedPercent: function(val,max) {
+      if (this.showValue) return val;
       if (val > max) {
         console.log('Px Percent Circle: invalid value converted to 100%');
         this._max = 100;
