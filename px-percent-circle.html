@@ -40,7 +40,7 @@ Custom property | Description | Default
       <path id="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>
       <text id="text" x$="[[_cx]]" y$="[[_cy]]" font-size$="[[_placement.tf]]" dx$="[[_placement.tx]]" dy$="[[_placement.ty]]">
         <tspan id="label">[[_percent]]</tspan>
-        <tspan id="percent" font-size$="[[_placement.pf]]" dx$="[[_placement.px]]" dy$="[[_placement.py]]">%</tspan>
+        <tspan id="percent" font-size$="[[_placement.pf]]" dx$="[[_placement.px]]" dy$="[[_placement.py]]">{{unit}}</tspan>
       </text>
     </svg>
   </template>
@@ -82,6 +82,17 @@ Custom property | Description | Default
         type: Number,
         value: 30
       },
+      /**
+       * The unit of value default is percentage.
+       * @property thickness
+       * @type String
+       * @default '%''
+       */
+      unit: {
+        type: String,
+        value: '%'
+      },
+
       /**
        * The sanitized value - invalid or negative values converted to 0.
        * @property value
