@@ -151,7 +151,7 @@ Custom property | Description | Default
        */
       _percent: {
         type: Number,
-        computed: '_computedPercent(_val,_max)'
+        computed: '_computedPercent(_val,_max, showValue)'
       },
       /**
        * Calculated array that represents the placement of the text labels inside the donut.
@@ -244,9 +244,10 @@ Custom property | Description | Default
      * @method _computedPercent
      * @param val
      * @param max
+     * @param showValue
      */
-    _computedPercent: function(val,max) {
-      if (this.showValue) return val;
+    _computedPercent: function(val, max, showValue) {
+      if (showValue) return val;
       if (val > max) {
         console.log('Px Percent Circle: invalid value converted to 100%');
         this._max = 100;
