@@ -1,3 +1,7 @@
+v0.1.3
+==================
+* Updated dependencies
+
 v0.1.2
 ==================
 * merge pull request #1
