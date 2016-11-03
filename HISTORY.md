@@ -1,3 +1,7 @@
+v0.1.4
+==================
+* added parent div to demo snippet so that codepen show up correctly
+
 v0.1.3
 ==================
 * Updated dependencies

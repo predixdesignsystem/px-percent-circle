@@ -80,7 +80,8 @@
                         id="percentEl{{indexPlusOne(index)}}"
                         val="{{item.val}}"
                         max="{{item.max}}"
-                        thickness="{{item.thickness}}">
+                        thickness="{{item.thickness}}"
+                        >
                       </px-percent-circle>
                     </div>
 
@@ -133,12 +134,14 @@ window.addEventListener('WebComponentsReady', function() {
     {
       "val": 33,
       "max": 100,
-      "thickness": 30
+      "thickness": 30,
+      "parentComponent": ["<div style='width:350px'>","</div>"]
     },
     {
       "val": 5,
       "max": 80,
-      "thickness": 10
+      "thickness": 10,
+      "parentComponent": ["<div style='width:350px'>","</div>"]
     }
   ];
 
