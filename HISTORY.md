@@ -1,3 +1,8 @@
+
+v0.1.5
+==================
+* bower updating px-demo-snippet
+
 v0.1.4
 ==================
 * added parent div to demo snippet so that codepen show up correctly
