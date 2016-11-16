@@ -23,3 +23,19 @@ common/abstract rules go in px-percent-circle-sketch.scss, not in this file.
 @import "px-colors-design/_settings.colors.scss";
 
 @import 'px-percent-circle-sketch.scss';
+
+// Component
+
+svg circle#background {
+  fill: transparent;
+  stroke: $px-percent-circle-background-color;
+}
+svg path#arc {
+  fill: transparent;
+  stroke: $px-percent-circle-fill-color;
+}
+svg text#text {
+  text-align: center;
+  text-anchor: middle;
+  fill: $px-percent-circle-text-color;
+}

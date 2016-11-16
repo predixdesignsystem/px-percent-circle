@@ -42,19 +42,6 @@ Predix branding rules go in px-percent-circle-predix.scss, not in this file.
   height: auto;
   width: auto;
 }
-svg circle#background {
-  fill: transparent;
-  stroke: $px-percent-circle-background-color;
-}
-svg path#arc {
-  fill: transparent;
-  stroke: $px-percent-circle-fill-color;
-}
-svg text#text {
-  text-align: center;
-  text-anchor: middle;
-  fill: $px-percent-circle-text-color;
-}
 
 // Trumps
 @import "inuit-clearfix/_trumps.clearfix.scss";
