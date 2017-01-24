@@ -1,6 +1,7 @@
 v0.2.3
 ==================
 * new demo component
+* updated api for new colors
 
 v0.2.2
 ==================
