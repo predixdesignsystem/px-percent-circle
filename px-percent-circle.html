@@ -4,6 +4,7 @@
     'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
 <link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../polymer-svg-template/polymer-svg-template.html"/>
 
 <!--
 The simplest possible donut chart - a single ring that fills clockwise based on a percentage.
@@ -34,19 +35,43 @@ Custom property | Description | Default
 <dom-module id="px-percent-circle">
   <template>
     <style include="px-percent-circle-styles"></style>
-    
+
     <svg id="container" height="100%" width="100%">
       <circle id="background" cx$="[[_cx]]" cy$="[[_cy]]" r$="[[_r]]" stroke-width$="[[_thickness]]"></circle>
-      <path id="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>
-      <text id="text" x$="[[_cx]]" y$="[[_cy]]" font-size$="[[_placement.tf]]" dx$="[[_placement.tx]]" dy$="[[_placement.ty]]">
-        <tspan id="label">[[_percent]]</tspan>
-        <tspan id="percent" font-size$="[[_placement.pf]]" dx$="[[_placement.px]]" dy$="[[_placement.py]]">%</tspan>
-      </text>
+
+      <!-- single value v.s. multiple values -->
+      <template is="dom-if" if="[[val]]">
+        <path class="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>
+      </template>
+
+      <template is="dom-if" if="[[_values]]">
+        <template is="dom-repeat" items="[[_arcPaths]]" as="_arcPath">
+          <path class="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>
+        </template>
+      </template>
+
+      <template is="dom-if" if="[[!_useCustomContent()]]">
+        <text id="text" x$="[[_cx]]" y$="[[_cy]]" font-size$="[[_placement.tf]]" dx$="[[_placement.tx]]"
+              dy$="[[_placement.ty]]">
+          <tspan id="label">[[_percent]]</tspan>
+          <tspan id="percent" font-size$="[[_placement.pf]]" dx$="[[_placement.px]]" dy$="[[_placement.py]]">%</tspan>
+        </text>
+      </template>
     </svg>
+    <template is="dom-if" if="[[_useCustomContent()]]">
+      <div id="content-layer">
+        <content></content>
+      </div>
+    </template>
   </template>
 </dom-module>
 
 <script>
+
+  // Fix template in svg
+  // https://github.com/Polymer/polymer/issues/1976
+  PolymerSvgTemplate('px-percent-circle');
+
   Polymer({
 
     is: 'px-percent-circle',
@@ -62,6 +87,20 @@ Custom property | Description | Default
         type: Number,
         value: 0
       },
+
+      /**
+       * Values of the circle - percent is calculated using the maximum provided. Negative values result in 0% while values above maximum result in 100%.
+       * @property val
+       * @type Array
+       * @default []
+       */
+      values: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      },
+
       /**
        * The maximum allowed value. The filled portion is calculated based on value divided by maximum. If an invalid maximum is provided, defaults to 100.
        * @property maximum
@@ -91,6 +130,17 @@ Custom property | Description | Default
         type: Number,
         computed: '_computedVal(val)'
       },
+
+      /**
+       * The sanitized value - invalid or negative values converted to 0.
+       * @property value
+       * @type Number
+       */
+      _values: {
+        type: Array,
+        computed: '_computedValues(values)'
+      },
+
       /**
        * The sanitized maximum - invalid or negative values converted to be defualt of 100.
        * @property maximum
@@ -174,6 +224,16 @@ Custom property | Description | Default
       _arcPath: {
         type: String,
         computed: '_computedArcPath(_cx, _cy, _r, _percent)'
+      },
+
+      /**
+       * Calculated multiple paths for the filled in portion of the donut.
+       * @property _arcPaths
+       * @type Array
+       */
+      _arcPaths: {
+        type: Array,
+        computed: '_getArcPaths(_cx, _cy, _r, _values)'
       }
     },
     /**
@@ -203,6 +263,16 @@ Custom property | Description | Default
       }
       return val;
     },
+
+    /**
+     * Cleanses invalid inputs by clipping value between 0 and 100.
+     * @method _computedValues
+     * @param values
+     */
+    _computedValues: function(values) {
+      return values.map(this._computedVal);
+    },
+
     /**
      * Cleanses invalid values for the maximum
      * @method _computedMax
@@ -231,13 +301,18 @@ Custom property | Description | Default
       }
       return Math.round((val / max) * 100);
     },
+    _useCustomContent: function() {
+      return this.getEffectiveChildren().length > 0;
+    },
     /**
      * Sets the view box attribute on the SVG element.
      * @method _setViewBoxAttribute
      * @param size
      */
     _setViewBoxAttribute: function (size) {
-      this.$.container.setAttribute('viewBox', ['0', '0', size, size].join(' '));
+      Polymer.RenderStatus.afterNextRender(this, function() {
+        this.$$('#container').setAttribute('viewBox', ['0', '0', size, size].join(' '));
+      });
     },
     /**
      * Finds the center of the height/width attributes.
@@ -301,6 +376,14 @@ Custom property | Description | Default
           ].join(' ');
       return d;
     },
+
+    _getArcPaths: function(_cx, _cy, _r, _values) {
+      return _values.map(function(val) {
+        var percent = this._computedPercent(val, this._max);
+        return this._computedArcPath(_cx, _cy, _r, percent);
+      }.bind(this));
+    },
+
     /**
      * Converts a polar value to Cartesian coordinates.
      * @method _polarToCartesian

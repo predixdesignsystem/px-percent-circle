@@ -29,7 +29,8 @@
   ],
   "dependencies": {
     "polymer": "^1.6.1",
-    "px-theme": "^2.0.1"
+    "px-theme": "^2.0.1",
+    "polymer-svg-template": "^1.0.1"
   },
   "devDependencies": {
     "px-starter-kit-design": "^0.7.0",

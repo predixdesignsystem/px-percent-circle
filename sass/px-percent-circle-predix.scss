@@ -30,10 +30,18 @@ svg circle#background {
   fill: transparent;
   stroke: $px-percent-circle-background-color;
 }
-svg path#arc {
+
+svg path.arc {
   fill: transparent;
-  stroke: $px-percent-circle-fill-color;
 }
+
+// colors for multiple series
+@for $i from 1 through 5 {
+  svg path.arc:nth-of-type(#{$i}) {
+    stroke: nth($px-percent-circle-fill-color-list, $i);
+  }
+}
+
 svg text#text {
   text-align: center;
   text-anchor: middle;
