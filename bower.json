@@ -5,6 +5,7 @@
     "px-percent-circle.html"
   ],
   "ignore": [
+    "*.enc",
     ".*",
     "npm-debug.log",
     "gulpfile.js",
