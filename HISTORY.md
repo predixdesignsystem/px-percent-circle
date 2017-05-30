@@ -1,3 +1,7 @@
+v1.0.0
+==================
+* update dependencies for design refresh
+
 v0.2.3
 ==================
 * new demo component
