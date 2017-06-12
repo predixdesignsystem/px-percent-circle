@@ -16,11 +16,11 @@ Perfect for dashboards where many percent circles may appear in a row or column.
 ### Styling
 The following custom properties are available for styling:
 
-Custom property | Description | Default
-----------------|-------------|----------
-`--px-percent-circle-fill-color` | Fill color for the circle | `$dv-basic-blue`
-`--px-percent-circle-background-color` | Background color for the circle | `$grey2`
-`--px-percent-circle-text-color` | Fill color for text | `black`
+Custom property | Description
+----------------|-------------
+`--px-percent-circle-fill-color` | Fill color for the circle
+`--px-percent-circle-background-color` | Background color for the circle
+`--px-percent-circle-text-color` | Fill color for text
 
 @element px-percent-circle
 @blurb A simple donut chart that fills clockwise based on a percentage.
@@ -34,7 +34,7 @@ Custom property | Description | Default
 <dom-module id="px-percent-circle">
   <template>
     <style include="px-percent-circle-styles"></style>
-    
+
     <svg id="container" height="100%" width="100%">
       <circle id="background" cx$="[[_cx]]" cy$="[[_cy]]" r$="[[_r]]" stroke-width$="[[_thickness]]"></circle>
       <path id="arc" stroke-width$="[[_thickness]]" d$="[[_arcPath]]"></path>

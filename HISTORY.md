@@ -1,6 +1,7 @@
 v1.0.0
 ==================
 * update dependencies for design refresh
+* component redesign, remove default styles
 
 v0.2.3
 ==================
