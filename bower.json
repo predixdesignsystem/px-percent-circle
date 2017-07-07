@@ -29,7 +29,7 @@
     "wct.conf.json"
   ],
   "dependencies": {
-    "polymer": "^1.6.1"
+    "polymer": "^1.9.0"
   },
   "devDependencies": {
     "px-normalize-design": "^1.0.0",
