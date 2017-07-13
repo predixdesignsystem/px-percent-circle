@@ -1,5 +1,5 @@
 # px-percent-circle [![Build Status](https://travis-ci.org/PredixDev/px-percent-circle.svg?branch=master)](https://travis-ci.org/PredixDev/px-percent-circle)
-[![px-percent-circle demo](px-percent-circle.png?raw=true)](https://PredixDev.github.io/px-percent-circle/)
+
 
 ## Overview
 
