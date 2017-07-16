@@ -3,7 +3,7 @@
 
 ## Overview
 
-px-percent-circle is a Predix UI component that provides a very simple donut chart style visualization. Given a value and a maximum value, the donut fills from the vertical position clockwise around the donut.
+Px-percent-circle is a Predix UI component that provides a very simple donut chart style visualization. Given a value and a maximum value, the donut fills from the vertical position clockwise around the donut.
 
 ## Usage
 
