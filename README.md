@@ -32,7 +32,7 @@ Second, import the component to your application with the following tag in your 
 Finally, use the component in your application:
 
 ```
-<px-percent-circle value="30" maximum="50"></px-percent-circle>
+<px-percent-circle val="30" max="50"></px-percent-circle>
 ```
 
 <br />
