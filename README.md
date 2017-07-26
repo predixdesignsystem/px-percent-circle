@@ -3,7 +3,7 @@
 
 ## Overview
 
-Px-percent-circle is a Predix UI component that provides a very simple donut chart style visualization. Given a value and a maximum value, the donut fills from the vertical position clockwise around the donut.
+`Px-percent-circle` is a Predix UI component that provides a very simple donut chart style visualization. Given a value and a maximum value, the donut fills from the vertical position clockwise around the donut.
 
 ## Usage
 
@@ -17,13 +17,13 @@ Node, npm and bower are necessary to install the component and dependencies. web
 
 ## Getting Started
 
-First, install the component via bower on the command line.
+First, install the component via bower on the command line:
 
 ```
 bower install px-percent-circle --save
 ```
 
-Second, import the component to your application with the following tag in your head.
+Second, import the component in your application with the following tag in your head:
 
 ```
 <link rel="import" href="/bower_components/px-percent-circle/px-percent-circle.html"/>
