@@ -1,3 +1,7 @@
+v1.0.2
+==================
+* constrain size on CodePen
+
 v1.0.1
 ==================
 * fix theme warnings
