@@ -1,3 +1,7 @@
+v1.0.1
+==================
+* fix theme warnings
+
 v1.0.0
 ==================
 * update dependencies for design refresh
