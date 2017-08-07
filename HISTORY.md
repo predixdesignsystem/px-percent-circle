@@ -1,3 +1,7 @@
+v1.0.3
+==================
+* runtime theming for demo
+
 v1.0.2
 ==================
 * constrain size on CodePen
