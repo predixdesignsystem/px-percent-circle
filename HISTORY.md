@@ -1,3 +1,7 @@
+v1.0.4
+==================
+* Fix comment for analyzer
+
 v1.0.3
 ==================
 * runtime theming for demo
