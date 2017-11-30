@@ -8,33 +8,36 @@
     <title>
       px-percent-circle Demo</title>
     <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
-    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
 
     <link rel="import" href="../px-theme/px-theme-styles.html">
-    <style include="px-theme-styles" is="custom-style"></style>
+
+
 
     <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
     <link rel="import" href="px-percent-circle.html" />
-    <style is="custom-style">
-      .small {
-        width: 100px;
-        height: 100px;
-      }
-      .medium {
-        width: 150px;
-        height: 150px;
-        --px-percent-circle-fill-color: red;
-      }
-      .large {
-        width: 200px;
-        height: 200px;
-        --px-percent-circle-fill-color: orange;
-      }
-      .widget {
-        width: 400px;
-        height: 300px;
-      }
-    </style>
+    <custom-style>
+      <style include="px-theme-styles" is="custom-style">
+        .small {
+          width: 100px;
+          height: 100px;
+        }
+        .medium {
+          width: 150px;
+          height: 150px;
+          --px-percent-circle-fill-color: red;
+        }
+        .large {
+          width: 200px;
+          height: 200px;
+          --px-percent-circle-fill-color: orange;
+        }
+        .widget {
+          width: 400px;
+          height: 300px;
+        }
+      </style>
+    </custom-style>
   </head>
 
   <body>
