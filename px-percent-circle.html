@@ -227,6 +227,7 @@ Custom property | Description
      * @param size
      */
     _setViewBoxAttribute: function (size) {
+      console.log(size);
       this.$.container.setAttribute('viewBox', ['0', '0', size, size].join(' '));
     },
     /**
