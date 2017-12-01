@@ -39,4 +39,15 @@ suite('Custom Automation Tests for a default px-percent-circle', function() {
     assert.equal(percentLabel, '100');
     done();
   });
+  test('Check px-percent-circle viewbox dimensions correctly set', done => {
+    let percentEl = Polymer.dom(document).querySelector('#px-percent-circle-5');
+    flush(()=>{
+      let elHeight = Polymer.dom(percentEl.root).querySelector('svg').viewBox.baseVal.height;
+      let elWidth = Polymer.dom(percentEl.root).querySelector('svg').viewBox.baseVal.width;
+      console.log(elWidth, elHeight);
+      assert.equal(elHeight, 300, 'Element height is 300');
+      assert.equal(elWidth, 300, 'Element width is 300');
+      done();
+    })
+  });
 });

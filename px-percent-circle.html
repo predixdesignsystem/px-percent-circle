@@ -97,7 +97,7 @@ Custom property | Description
        */
       _size: {
         type: Number,
-        computed: '_computedSize()',
+        computed: '_computedSize(this.getBoundingClientRect())',
         observer: '_setViewBoxAttribute',
         value: 300
       },
@@ -227,7 +227,6 @@ Custom property | Description
      * @param size
      */
     _setViewBoxAttribute: function (size) {
-      console.log(size);
       this.$.container.setAttribute('viewBox', ['0', '0', size, size].join(' '));
     },
     /**
@@ -252,8 +251,7 @@ Custom property | Description
      * @method _computedSize
      * @param size
      */
-    _computedSize: function () {
-      var rect = this.getBoundingClientRect();
+    _computedSize: function (rect) {
       return Math.min(rect.height, rect.width);
     },
     /**
