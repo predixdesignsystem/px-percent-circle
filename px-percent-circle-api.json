@@ -13,11 +13,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 50,
+              "line": 66,
               "column": 6
             },
             "end": {
-              "line": 53,
+              "line": 69,
               "column": 7
             }
           },
@@ -33,11 +33,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 60,
+              "line": 76,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -53,11 +53,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 70,
+              "line": 86,
               "column": 6
             },
             "end": {
-              "line": 73,
+              "line": 89,
               "column": 7
             }
           },
@@ -73,11 +73,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 79,
+              "line": 95,
               "column": 6
             },
             "end": {
-              "line": 82,
+              "line": 98,
               "column": 7
             }
           },
@@ -94,11 +94,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 88,
+              "line": 104,
               "column": 6
             },
             "end": {
-              "line": 91,
+              "line": 107,
               "column": 7
             }
           },
@@ -115,11 +115,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 97,
+              "line": 113,
               "column": 6
             },
             "end": {
-              "line": 102,
+              "line": 118,
               "column": 7
             }
           },
@@ -138,11 +138,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 109,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 112,
+              "line": 128,
               "column": 7
             }
           },
@@ -159,11 +159,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 118,
+              "line": 134,
               "column": 6
             },
             "end": {
-              "line": 121,
+              "line": 137,
               "column": 7
             }
           },
@@ -180,11 +180,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 127,
+              "line": 143,
               "column": 6
             },
             "end": {
-              "line": 130,
+              "line": 146,
               "column": 7
             }
           },
@@ -201,11 +201,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 136,
+              "line": 152,
               "column": 6
             },
             "end": {
-              "line": 139,
+              "line": 155,
               "column": 7
             }
           },
@@ -222,11 +222,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 145,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 148,
+              "line": 164,
               "column": 7
             }
           },
@@ -243,11 +243,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 154,
+              "line": 170,
               "column": 6
             },
             "end": {
-              "line": 157,
+              "line": 173,
               "column": 7
             }
           },
@@ -264,11 +264,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 163,
+              "line": 179,
               "column": 6
             },
             "end": {
-              "line": 166,
+              "line": 182,
               "column": 7
             }
           },
@@ -286,11 +286,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 173,
+              "line": 189,
               "column": 4
             },
             "end": {
-              "line": 181,
+              "line": 197,
               "column": 5
             }
           },
@@ -307,11 +307,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 187,
+              "line": 203,
               "column": 4
             },
             "end": {
-              "line": 194,
+              "line": 210,
               "column": 5
             }
           },
@@ -328,11 +328,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 200,
+              "line": 216,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 223,
               "column": 5
             }
           },
@@ -349,11 +349,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 214,
+              "line": 230,
               "column": 4
             },
             "end": {
-              "line": 222,
+              "line": 238,
               "column": 5
             }
           },
@@ -373,11 +373,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 228,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 230,
+              "line": 246,
               "column": 5
             }
           },
@@ -394,11 +394,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 236,
+              "line": 252,
               "column": 4
             },
             "end": {
-              "line": 238,
+              "line": 254,
               "column": 5
             }
           },
@@ -415,11 +415,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 245,
+              "line": 261,
               "column": 4
             },
             "end": {
-              "line": 247,
+              "line": 263,
               "column": 5
             }
           },
@@ -439,16 +439,20 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 253,
+              "line": 269,
               "column": 4
             },
             "end": {
-              "line": 256,
+              "line": 271,
               "column": 5
             }
           },
           "metadata": {},
-          "params": []
+          "params": [
+            {
+              "name": "rect"
+            }
+          ]
         },
         {
           "name": "_computedThickness",
@@ -456,11 +460,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 263,
+              "line": 278,
               "column": 4
             },
             "end": {
-              "line": 266,
+              "line": 281,
               "column": 5
             }
           },
@@ -480,11 +484,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 279,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 292,
+              "line": 307,
               "column": 5
             }
           },
@@ -510,11 +514,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 301,
+              "line": 316,
               "column": 4
             },
             "end": {
-              "line": 307,
+              "line": 322,
               "column": 5
             }
           },
@@ -545,11 +549,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 39,
+          "line": 55,
           "column": 10
         },
         "end": {
-          "line": 308,
+          "line": 323,
           "column": 3
         }
       },
@@ -561,11 +565,11 @@
           "description": "Value of the circle - percent is calculated using the maximum provided. Negative values result in 0% while values above maximum result in 100%.",
           "sourceRange": {
             "start": {
-              "line": 50,
+              "line": 66,
               "column": 6
             },
             "end": {
-              "line": 53,
+              "line": 69,
               "column": 7
             }
           },
@@ -577,11 +581,11 @@
           "description": "The maximum allowed value. The filled portion is calculated based on value divided by maximum. If an invalid maximum is provided, defaults to 100.",
           "sourceRange": {
             "start": {
-              "line": 60,
+              "line": 76,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -593,11 +597,11 @@
           "description": "The thickness, in pixels, of the donut ring. Will not go beyond 10% of the component's size to avoid display issues.",
           "sourceRange": {
             "start": {
-              "line": 70,
+              "line": 86,
               "column": 6
             },
             "end": {
-              "line": 73,
+              "line": 89,
               "column": 7
             }
           },
